@@ -10,12 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
-import sys
+import os, sys
+from os.path import dirname, abspath
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-PROJECT_ROOT = os.path.dirname(__file__)
-BASE_DIR = sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
+# Absolute filesystem path to the Django project directory:
+DJANGO_ROOT = dirname(dirname(dirname(abspath(__file__))))
+
+# Adds our apps to pythonpath, this way we don't need to type our project
+# name in our dotted import paths:
+sys.path.append(DJANGO_ROOT+"/apps/")
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,7 +49,7 @@ THIRD_PARTY_APPS = [
 ]
 
 CORE_APPS = [
-    'apps.emailer',
+    'emailer',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + CORE_APPS
