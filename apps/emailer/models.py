@@ -14,6 +14,7 @@ class Notification(models.Model):
     recipient = models.EmailField()
     subject = models.TextField()
     body = models.TextField()
+    has_send = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'notification'
