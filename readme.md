@@ -10,17 +10,8 @@ $ sudo su - postgres
 $ psql
 $ CREATE DATABASE notigateway;
 ```
-5. Create a file in notigateway/settings/local_settings.py
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'notigateway',                      
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-    }
-}
-```
-6. python manage.py migrate
-7. python manage.py runserver
+5. Install RabbitMQ; Start RabbitMQ; $ rabbitmq-server
+6. Rename notigateway/settings/local_settings.sample -> local_settings.py and set your local configuration.
+7. python manage.py migrate
+8. python manage.py runserver
+9. celery -A notigateway worker -l info
