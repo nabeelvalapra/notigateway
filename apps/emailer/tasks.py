@@ -11,7 +11,7 @@ def send_notif(notif_data):
     send_mail(
         notif_data['subject'],
         notif_data['body'],
-        settings.FROM_ADDRESS,
+        settings.EMAIL_HOST_USER,
         [notif_data['recipient']],
         fail_silently=False,
     )

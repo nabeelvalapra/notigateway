@@ -1,0 +1,25 @@
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'DB_NAME',                      
+        'USER': 'POSTGRES_USERNAME',
+        'PASSWORD': 'POSTGRES_PASS',
+        'HOST': 'localhost',
+    }
+}
+
+
+# Email Related Settings
+EMAIL_HOST_USER = 'hello@example.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# OR
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_PASSWORD = 'password'
+
