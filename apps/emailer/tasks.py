@@ -5,6 +5,9 @@ from django.conf import settings
 # Celery import 
 from celery import shared_task
 
+# App imports
+from emailer.models import Notification
+
 
 @shared_task
 def send_notif(notif_data):
@@ -12,6 +15,11 @@ def send_notif(notif_data):
         notif_data['subject'],
         notif_data['body'],
         settings.EMAIL_HOST_USER,
-        [notif_data['recipient']],
-        fail_silently=False,
+        [notif_data['recipient']]
     )
+
+    notif = Notification.objects.get(id=notif_data['id'])
+    notif.has_send = True
+    notif.save()
+
+
