@@ -15,3 +15,21 @@ $ CREATE DATABASE notigateway;
 7. python manage.py migrate
 8. python manage.py runserver
 9. celery -A notigateway worker -l info
+
+
+## API Doc
+DRF Browsable API is enabled.
+```
+Endpoint: POST http://localhost:8000/api/v1/send-notification/
+Description: This endpoint will register a task to send the email.
+Payload: 
+{
+	"action": "SV",
+	"recipient": "nabeel@gmail.com",
+	"subject": "Hello, How's the subject",
+	"body": "This is the content of this email"
+}
+
+Endpoint: GET http://localhost:8000/api/v1/send-notification/<pk>/
+Description: Retrives the notification detail with the status(has_send)
+```
