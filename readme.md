@@ -16,6 +16,8 @@ $ CREATE DATABASE notigateway;
 8. python manage.py runserver
 9. celery -A notigateway worker -l info
 
+## Code Overview
+/send-notification/ endpoint collects the data to send email. Saves this data in the model with has_send=False. Then pass on the sending task to RabbitMQ. The celery worker picks up the task, executes it and updates the model object with has_send=True
 
 ## API Doc
 DRF Browsable API is enabled.
@@ -29,7 +31,10 @@ Payload:
 	"subject": "Hello, How's the subject",
 	"body": "This is the content of this email"
 }
-
+Params:
+Action: https://github.com/nabeelvalapra/notigateway/blob/master/apps/emailer/models.py#L4
+```
+```
 Endpoint: GET http://localhost:8000/api/v1/send-notification/<pk>/
 Description: Retrives the notification detail with the status(has_send)
 ```
